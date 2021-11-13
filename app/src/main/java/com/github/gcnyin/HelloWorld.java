@@ -3,6 +3,7 @@ package com.github.gcnyin;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWGamepadState;
 import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.system.MemoryUtil;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -20,7 +21,13 @@ public class HelloWorld {
             System.exit(-1);
         }
 
-        long window = glfwCreateWindow(800, 600, Version.getVersion(), MemoryUtil.NULL, MemoryUtil.NULL);
+        glfwDefaultWindowHints();
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
+        int WIDTH = 800;
+        int HEIGHT = 600;
+
+        long window = glfwCreateWindow(WIDTH, HEIGHT, Version.getVersion(), MemoryUtil.NULL, MemoryUtil.NULL);
 
         if (window == MemoryUtil.NULL) {
             glfwTerminate();
@@ -37,6 +44,9 @@ public class HelloWorld {
                 }
             }
         });
+
+        GLFWVidMode videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+        glfwSetWindowPos(window, (videoMode.width() - WIDTH) / 2, (videoMode.height() - HEIGHT) / 2);
 
         glClearColor(1.0f, 0.5f, 0.0f, 0.0f);
 
