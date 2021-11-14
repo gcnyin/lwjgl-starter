@@ -109,9 +109,12 @@ public class HelloWorld {
         }
 
         float[] vertices = new float[]{
-                0.0f, 0.5f, 0.0f,
+                -0.5f, 0.5f, 0.0f,
                 -0.5f, -0.5f, 0.0f,
-                0.5f, -0.5f, 0.0f
+                0.5f, 0.5f, 0.0f,
+                0.5f, 0.5f, 0.0f,
+                -0.5f, -0.5f, 0.0f,
+                0.5f, -0.5f, 0.0f,
         };
 
         int vboId, vaoId;
@@ -151,7 +154,7 @@ public class HelloWorld {
             // Bind to the VAO
             glBindVertexArray(vaoId);
             // Draw the vertices
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+            glDrawArrays(GL_TRIANGLES, 0, vertices.length / 3);
             // Restore state
             glBindVertexArray(0);
             glUseProgram(0);
